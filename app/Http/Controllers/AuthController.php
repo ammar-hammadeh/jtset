@@ -55,7 +55,7 @@ class AuthController extends Controller
                     $interval = $current->diff($last_update);
                     $seconds = $interval->s;
                     if ($seconds <= 30 && $user->attempt >= 3) {
-                        return back()->withErrors('try again after 30 sec');
+                        return back()->withErrors('try again after 30 sec (' . $seconds . ')');
                     }
                     $user->update([
                         'attempt' => $user->attempt + 1,
